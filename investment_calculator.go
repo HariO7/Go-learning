@@ -2,26 +2,30 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
-	const inflationAmount = 2.5
-	var investmentAmount, interestRate, year float64
+	var revenue, taxRate, expenses float64
 
-	fmt.Print("Enter investment amount: ")
-	fmt.Scan(&investmentAmount)
+	fmt.Print("What is the revenue receieved: ")
+	fmt.Scan(&revenue)
 
-	fmt.Print("Enter the interest rate: ")
-	fmt.Scan(&interestRate)
+	fmt.Print("What is the total expenses: ")
+	fmt.Scan(&expenses)
 
-	fmt.Print("Enter the number of years: ")
-	fmt.Scan(&year)
+	fmt.Print("What is the tax rate: ")
+	fmt.Scan(&taxRate)
 
-	futureValue := investmentAmount * math.Pow(1+interestRate/100, year)
+	earningsBeforeTax := revenue - expenses
+	profit := earningsBeforeTax * (1 - taxRate)
+	ratio := earningsBeforeTax / profit
 
-	inFutureValue := futureValue / math.Pow(1+inflationAmount/100, year)
+	fmt.Print("Earnings before tax: ")
+	fmt.Println(earningsBeforeTax)
 
-	fmt.Println(futureValue)
-	fmt.Println(inFutureValue)
+	fmt.Print("Total profit: ")
+	fmt.Println(profit)
+
+	fmt.Print("Ratio between the two: ")
+	fmt.Println(ratio)
 }
