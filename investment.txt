@@ -1,0 +1,10 @@
+EBT: 1500.0,
+ profit: 1425.0,
+ ratio: 1.1
+EBT: 1500.0,
+ profit: 1440.0,
+ ratio: 1.0
+
+EBT: 3600.0,
+ profit: 3492.0,
+ ratio: 1.0
