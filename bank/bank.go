@@ -13,14 +13,30 @@ func writeBalance(balance float64) {
 	os.WriteFile(fileName, []byte(balanceText), 0644)
 }
 
-func readBalance() float64 {
-	balance, _ := os.ReadFile(fileName)
-	balanceValue, _ := strconv.ParseFloat(string(balance), 64)
-	return balanceValue
+func readBalance() (float64, error) {
+	balance, err := os.ReadFile(fileName)
+
+	if err != nil {
+		return 1000, err
+	}
+	balanceValue, err := strconv.ParseFloat(string(balance), 64)
+
+	if err != nil {
+		return 1000, err
+	}
+
+	return balanceValue, nil
 }
 
 func main() {
-	accountBalance := readBalance()
+	accountBalance, err := readBalance()
+
+	if err != nil {
+		fmt.Println("An Error occured")
+		fmt.Println(err)
+		fmt.Println("----------------------")
+		panic(err)
+	}
 	fmt.Println("Welcome to Go BanK ")
 
 	for {
