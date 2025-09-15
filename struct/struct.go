@@ -13,10 +13,16 @@ func main() {
 
 	var appUser, err = user.New(userfirstName, userlastName, userbirthDate)
 
+	var adminUser = user.AdminNew("hari@gmail.com", "fdajlfjdaljf")
+
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+
+	adminUser.OutputUserData()
+	adminUser.ClearUserName()
+	adminUser.OutputUserData()
 
 	appUser.OutputUserData()
 	appUser.ClearUserName()
