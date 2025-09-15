@@ -19,7 +19,7 @@ func (note Note) Display() {
 	fmt.Printf("The title you entered is: %v \nThe content you entered is: \n\n%v\n ", note.Title, note.Content)
 }
 
-func (note Note) Save() {
+func (note Note) Save() error {
 
 	fileName := strings.ReplaceAll(note.Title, " ", "_")
 	fileName = strings.ToLower(fileName) + ".json"
@@ -28,17 +28,18 @@ func (note Note) Save() {
 
 	if err != nil {
 		fmt.Printf("Error occured while decoding:%v", err)
-		return
+		return err
 	}
 
 	err = os.WriteFile(fileName, data, 0644)
 
 	if err != nil {
 		fmt.Printf("Saving file failed")
-		return
+		return err
 	}
 
 	fmt.Printf("Saving file succeeded!")
+	return nil
 }
 
 func New(title, content string) (Note, error) {
